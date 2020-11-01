@@ -25,6 +25,7 @@ class Bars extends React.Component {
       barsMargin,
       barsColor,
       data,
+      dataColors,
       onHover,
       getX,
       getY,
@@ -39,19 +40,24 @@ class Bars extends React.Component {
     const barsWidth = unitWidth - margin * 2
     return (
       <g>
-        {data.map((point, i) => (
-          <Bar
-            key={i}
-            color={barsColor}
-            opacity={barsOpacity}
-            x={getX(point.x + margin)}
-            y={getY(point.y)}
-            width={getX(barsWidth + minX)}
-            height={round(getY(minY) - getY(point.y), 2)}
-            onMouseEnter={e => onHover(point, e)}
-            onMouseLeave={() => onHover(null, null)}
-          />
-        ))}
+        {data.map((point, i) => {
+          const selectedPoint = dataColors.find(
+            ({startX, endX}) => point.x >= startX && point.x <= endX
+          )
+          return (
+            <Bar
+              key={i}
+              color={selectedPoint ? selectedPoint.color : barsColor}
+              opacity={barsOpacity}
+              x={getX(point.x + margin)}
+              y={getY(point.y)}
+              width={getX(barsWidth + minX)}
+              height={round(getY(minY) - getY(point.y), 2)}
+              onMouseEnter={e => onHover(point, e)}
+              onMouseLeave={() => onHover(null, null)}
+            />
+          )
+        })}
       </g>
     )
   }
@@ -67,6 +73,13 @@ Bars.propTypes = {
       y: PropTypes.number,
     })
   ).isRequired,
+  dataColors: PropTypes.arrayOf(
+    PropTypes.shape({
+      startX: PropTypes.number,
+      endX: PropTypes.number,
+      color: PropTypes.string,
+    })
+  ),
   getX: PropTypes.func,
   getY: PropTypes.func,
   labelsHeightX: Labels.propTypes.labelsHeightX,

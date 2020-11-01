@@ -119,6 +119,13 @@ LineChart.propTypes = {
       y: PropTypes.number,
     })
   ).isRequired,
+  dataColors: PropTypes.arrayOf(
+    PropTypes.shape({
+      startX: PropTypes.number,
+      endX: PropTypes.number,
+      color: PropTypes.string,
+    })
+  ),
   viewBoxHeight: PropTypes.number,
   viewBoxWidth: PropTypes.number,
   ...Bars.propTypes,
@@ -130,6 +137,7 @@ LineChart.propTypes = {
 
 LineChart.defaultProps = {
   data: [],
+  dataColors: [],
   viewBoxHeight: 300,
   viewBoxWidth: 800,
   ...Bars.defaultProps,

@@ -29,7 +29,7 @@
     "test:watch": "yarn test -- --watch"
   },
   "dependencies": {
-    "styled-components": "^2.1.2"
+    "styled-components": "^4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -53,11 +53,11 @@
     "markdown-loader": "^2.0.2",
     "nwb": "^0.18.0",
     "prettier": "^1.5.3",
-    "prop-types": "^15.6.0",
-    "react": "^15.6.1",
+    "prop-types": "15.7.2",
+    "react": "^16.14.0",
     "react-demo-page": "^0.3.4",
-    "react-dom": "^15.6.1",
-    "react-test-renderer": "^15.6.1"
+    "react-dom": "^16.14.0",
+    "react-test-renderer": "^16"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
